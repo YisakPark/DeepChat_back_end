@@ -13,6 +13,21 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
 
+// @route   POST api/users/register
+// @desc    Register user
+// @access  Public
+router.post("/register", (req, res) => {
+  const newUser = new User({
+    user_id: req.body.user_id
+  });
+
+  newUser
+    .save()
+    .then(user => res.json(user))
+    .catch(err => console.log(err));
+});
+
+/*
 // @route   GET api/users/test
 // @desc    Tests users route
 // @access  Public
@@ -123,5 +138,5 @@ router.get(
     });
   }
 );
-
+*/
 module.exports = router;
